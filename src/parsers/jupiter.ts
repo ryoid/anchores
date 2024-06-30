@@ -5,13 +5,13 @@ export const JUPITER_V6_PROGRAM_ID =
   "JUP6LkbZbjS1jKKwapdHNy74zcZ3tLUZoi5QNyVTaV4";
 
 export function parseSwapEvent(data: Uint8Array) {
-  const view = new DataView(data.buffer, data.byteOffset, data.byteLength);
+  const reader = b.createReader(data);
   return {
-    amm: b.publicKey(data, 0), // + 32
-    inputMint: b.publicKey(data, 32), // + 32
-    inputAmount: b.u64(view, 64), // + 8
-    outputMint: b.publicKey(data, 72), // + 32
-    outputAmount: b.u64(view, 104), // + 8
+    amm: b.publicKey(reader),
+    inputMint: b.publicKey(reader),
+    inputAmount: b.u64(reader),
+    outputMint: b.publicKey(reader),
+    outputAmount: b.u64(reader),
   };
 }
 export type ParsedSwapEvent = ReturnType<typeof parseSwapEvent>;
@@ -23,11 +23,11 @@ export const SwapEvent = {
 };
 
 export function parseFeeEvent(data: Uint8Array) {
-  const view = new DataView(data.buffer, data.byteOffset, data.byteLength);
+  const reader = b.createReader(data);
   return {
-    account: b.publicKey(data, 0), // + 32
-    mint: b.publicKey(data, 32), // + 32
-    amount: b.u64(view, 64), // + 8
+    account: b.publicKey(reader),
+    mint: b.publicKey(reader),
+    amount: b.u64(reader),
   };
 }
 export type ParsedFeeEvent = ReturnType<typeof parseFeeEvent>;
