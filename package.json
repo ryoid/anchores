@@ -1,0 +1,112 @@
+{
+  "name": "anchores",
+  "version": "0.0.1",
+  "description": "Minimal library for parsing Solana transaction, instructions and events.",
+  "keywords": [
+    "solana",
+    "tx",
+    "transaction",
+    "parser",
+    "anchor",
+    "borsh",
+    "jupiter",
+    "instruction",
+    "event",
+    "web3"
+  ],
+  "author": "Ryan Conceicao",
+  "license": "MIT",
+  "repository": "ryoid/anchores",
+  "type": "module",
+  "sideEffects": false,
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.cts",
+  "exports": {
+    ".": {
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      },
+      "import": {
+        "types": "./dist/index.d.mts",
+        "default": "./dist/index.mjs"
+      }
+    },
+    "./binary": {
+      "require": {
+        "types": "./dist/binary.d.cts",
+        "default": "./dist/binary.cjs"
+      },
+      "import": {
+        "types": "./dist/binary.d.mts",
+        "default": "./dist/binary.mjs"
+      }
+    },
+    "./anchor": {
+      "require": {
+        "types": "./dist/anchor.d.cts",
+        "default": "./dist/anchor.cjs"
+      },
+      "import": {
+        "types": "./dist/anchor.d.mts",
+        "default": "./dist/anchor.mjs"
+      }
+    },
+    "./parsers": {
+      "require": {
+        "types": "./dist/parsers/types.d.cts"
+      },
+      "import": {
+        "types": "./dist/parsers/types.d.mts"
+      }
+    },
+    "./parsers/jupiter": {
+      "require": {
+        "types": "./dist/parsers/jupiter.d.cts",
+        "default": "./dist/parsers/jupiter.cjs"
+      },
+      "import": {
+        "types": "./dist/parsers/jupiter.d.mts",
+        "default": "./dist/parsers/jupiter.mjs"
+      }
+    },
+    "./parsers/meteora-dlmm": {
+      "require": {
+        "types": "./dist/parsers/meteora-dlmm.d.cts",
+        "default": "./dist/parsers/meteora-dlmm.cjs"
+      },
+      "import": {
+        "types": "./dist/parsers/meteora-dlmm.d.mts",
+        "default": "./dist/parsers/meteora-dlmm.mjs"
+      }
+    }
+  },
+  "scripts": {
+    "lint": "eslint --cache . && prettier -c src",
+    "lint:fix": "eslint --cache . --fix && prettier -w src",
+    "test": "vitest --typecheck",
+    "dev": "pkgroll --watch",
+    "build": "pkgroll --minify",
+    "type-check": "tsc --noEmit",
+    "prepack": "pnpm build && clean-pkg-json"
+  },
+  "devDependencies": {
+    "@solana/web3.js": "^1.94.0",
+    "@types/node": "^20.14.2",
+    "clean-pkg-json": "^1.2.0",
+    "eslint": "^9.6.0",
+    "eslint-config-unjs": "^0.3.2",
+    "pkgroll": "^2.1.1",
+    "prettier": "^3.3.2",
+    "typescript": "^5.4.5",
+    "vitest": "^1.6.0"
+  },
+  "dependencies": {
+    "@noble/hashes": "^1.4.0",
+    "@scure/base": "^1.1.7"
+  }
+}
